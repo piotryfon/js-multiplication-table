@@ -42,8 +42,7 @@ body{
     cursor: pointer;
     transition: 0.1s;
     margin: 10px; 
-    color: white;
-
+    color: #ffffff;
 }
 .btn:focus{
     background-color: #006eff;
