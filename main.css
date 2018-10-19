@@ -1,47 +1,66 @@
 body{
     margin: 0;
-    background: url(./img/background-3.png);
-    background-size: cover;
+    background-color: #383838;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+header{
+    text-align: center;
+}
+#back-to-portfolio{
+    width: 140px;
+    font-size: 18px;
+    border: 1px solid #ffffff;
+    padding: 10px;
+    background-color: #ff932f;
     color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;
+}
+#back-to-portfolio:hover{
+    background-color: #fa8415;
 }
 #app-container{
     width: 90%;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
 }
 .flex-container{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
 }
 #showTask{
-    padding-top: 12px;
+    padding-top: 8px;
     text-align: center;
     box-sizing: border-box;
-    width: 140px;
-    height: 56px;
+    width: 120px;
+    height: 46px;
     background-color: #006eff;
     color: #ffffff;
-    font-size: 26px; 
-    margin: 10px;
+    font-size: 24px; 
+    margin: 5px;
     border-radius: 5px; 
 }
 #input{
-    height: 50px;
-    width: 140px;
-    font-size: 26px;
-    margin: 10px;
+    height: 40px;
+    width: 80px;
+    font-size: 24px;
+    margin: 5px;
     padding-left: 5px;
     border-radius: 5px;
 }
 .btn{
     background-color: #0044ff;
-    height: 56px;
+    height: 46px;
     font-size: 16px;
-    box-shadow: 3px 3px #666;
     cursor: pointer;
-    transition: 0.1s;
-    margin: 10px; 
+    transition: 0.3s;
+    margin: 5px; 
     color: #ffffff;
 }
 .btn:focus{
@@ -52,6 +71,8 @@ body{
 }
 #show-result-div{
     text-align: center;
-    color: #ffffff;
-    margin: 0px 20px;
+    margin: 10px;
+}
+#points{
+    text-align: center;
 }

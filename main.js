@@ -1,57 +1,96 @@
-let input = document.querySelector("#input");
-let showTask = document.querySelector("#showTask");
-let showResultDiv = document.querySelector("#show-result-div");
-let start = document.querySelector("#start");
-let startEventListener = start.addEventListener("click", randomizeTask);
-let checkBtn = document.querySelector("#check");
-let checkBtnEventListener = checkBtn.addEventListener("click", checkResult);
-let parsedValue;
-let result;
+$(document).ready(function(){
 
-function getRandomNumberInRange(min, max){
-    return Math.round(Math.random() * (max - min)) + min;
-}
+    let input = $("#input");
+    let showTask = $("#showTask");
+    let showResultDiv = $("#show-result-div");
+    let start = $("#start");
+    start.on("click", randomizeTask);
+    let checkBtn = $("#check-btn");
+    let score = $("#points");
+    let parsedValue;
+    let result;
+    let counter = 0;
+    let points = 0;
+    let zacheta = "";
+    let resetPoints;
 
-function randomizeTask(){
-
-    let a = getRandomNumberInRange(1, 10);
-    let b = getRandomNumberInRange(1, 10);
+    function losujHtml(){
+        let losHtml = Math.floor(Math.random()*3);
+       switch(losHtml){
+           case 0:
+           zacheta = "Dasz radę!";
+           break;
+           case 1:
+           zacheta = "Poradzisz sobie!";
+           break;
+           case 2:
+           zacheta = ":-)";
+           break;
+       }
+    }
     
-    result = a * b;
-    console.log("Wynik to: " + result)
-    showTask.innerHTML = `${a} x ${b} =`
-    startEventListener = start.removeEventListener("click", randomizeTask)
-    checkBtnEventListener = checkBtn.addEventListener("click", checkResult);  
-}
-
-function submitVal(){
-
-    if(input.value){
-        parsedValue = parseInt(input.value);
-        console.log("Napisałeś: " + parsedValue);
-        showResultDiv.innerHTML = `<h2>Napisałeś ${parsedValue}</h2>`;
-                
-    }else{
-        showResultDiv.innerHTML = "<h2>Wpisz wartość i potwierdź przyciskiem obok!</h2>"
-    }   
-}
-
-function checkResult(){
+    function getRandomNumberInRange(min, max) {
+        return Math.round(Math.random() * (max - min)) + min;
+    }
     
-    if(result && parsedValue){
+    function randomizeTask() {
+        losujHtml();
+        if(resetPoints){
+            score.html("<h4>Zaczynamy od nowa.</h4>");
+        }
+        let a = getRandomNumberInRange(1, 10);
+        let b = getRandomNumberInRange(1, 10);
+
+        result = a * b;
+        console.log(a + " * " + b + " = " + (a*b));
+        showTask.html( a + " X " + b + " = ");
+        start.off("click", randomizeTask);
+        checkBtn.on("click", submitVal);
+        showResultDiv.html("<h3>" + zacheta + "</h3>");
+    }
+    
+    function submitVal() {
         
-        console.log("result: " + result + " value: " + parsedValue)
-        console.log(result === parsedValue)
-        if(result === parsedValue){
-            showResultDiv.innerHTML = "<h2>Bardzo dobrze!</h2>"
-        }else {
-            showResultDiv.innerHTML = `<h2>Źle, wynik to: ${result}</h2>`
+        if (input.val()) {
+            parsedValue = parseInt(input.val());
+            checkResult();
+        } else {
+            showResultDiv.html('<h3>Naciśnij "Losuj zadanie" i wpisz wynik!</h3>');
+        }
+    }
+    
+    function checkResult() {
+
+        counter += 1;
+
+        if (result === parsedValue) {
+            points += 1;
+            showResultDiv.html("<h3>Bardzo dobrze!</h3>");
+            
+        } else {
+            showResultDiv.html("<h3>Źle, wynik to: " + result + "</h3>");
         }
 
-    }else showResultDiv.innerHTML = `<h2>Naciśnij "Start" i wpisz prawidłowo wartość!</h2>`
+        if (counter === 10 && counter/points <= 1.25){
+            score.html("<h4>Gratulacje! Dobrze ci poszło. Zdobyte punkty: " + points + " na " + counter + " zad.<h4>");
+            counter = 0;
+            points = 0;
+            resetPoints = true;
 
-        startEventListener = start.addEventListener("click", randomizeTask);
-        checkBtnEventListener = checkBtn.removeEventListener("click", checkResult);  
-}
+            
+        }else if(counter === 10 && counter/points > 1.25){
+            score.html("<h4>Spróbuj jeszcze raz! Zdobyte punkty: " + points + " na " + counter + " zad.<h4>");
+            counter = 0;
+            points = 0;
+            resetPoints = true;
+
+        }else {
+            score.html("<h4>" + "Zdobyte punkty: " + points + " na " + counter + " zad.</h4>");
+            resetPoints = false;
+        }
+        start.on("click", randomizeTask);
+        checkBtn.off("click", submitVal);
+    }
+});
 
 

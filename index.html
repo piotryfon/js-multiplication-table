@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Nauka mnożenia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-   
+
 </head>
+
 <body>
 
     <div id="app-container">
 
-        <div id="heeder">
-            <h1>Rozwiąż zadania:</h1>
-            <button class="btn" id="start" >START</button>
-        </div>
-        <br>
+        <header>
+            <a href="#">
+                <div id="back-to-portfolio">Portfolio</div>
+            </a>
+            <hr>
+            <h2 >Rozwiąż zadania:</h2>
+            <button class="btn" id="start">Losuj zadania</button>
+        </header>
+    
         <hr/>
-        <br>
-
+        <div id="show-result-div"></div>
+        <div id="points"></div>
         <div class="flex-container">
-            <div id="showTask"></div> 
-            <div id="input-div">
-                <input id="input" type="number">
-            </div>
-            <button class="btn" onclick="submitVal()">Potwierdź</button>
+            <div id="showTask"></div>
+            
+            <input id="input" type="number">
+         
+            <button class="btn" id="check-btn">Sprawdź wynik</button>
         </div>
         
-        <br><br>
-        <div class="flex-container">
-            
-            <button class="btn" id="check">Sprawdź wynik</button>
-            <div id="show-result-div"></div>
-        </div>
-      
     </div>
-
+    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="main.js"></script>
 
 </body>
+
 </html>
